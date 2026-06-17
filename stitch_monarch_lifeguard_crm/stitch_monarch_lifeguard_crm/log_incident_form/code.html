@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Log New Incident - Monarch Lifeguard CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001c3a",
+                        "secondary": "#416089",
+                        "outline-variant": "#c2c6d2",
+                        "surface-bright": "#f8f9fb",
+                        "primary-container": "#185fa5",
+                        "on-secondary-container": "#385781",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "inverse-on-surface": "#f0f1f3",
+                        "surface-variant": "#e1e2e4",
+                        "surface-dim": "#d9dadc",
+                        "tertiary": "#005039",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#86f8c9",
+                        "on-tertiary-container": "#7aecbe",
+                        "on-secondary-fixed-variant": "#284870",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d4e3ff",
+                        "on-primary-container": "#c1d9ff",
+                        "surface": "#f8f9fb",
+                        "inverse-primary": "#a4c9ff",
+                        "on-surface": "#191c1e",
+                        "on-surface-variant": "#424751",
+                        "outline": "#727782",
+                        "primary": "#004782",
+                        "primary-fixed-dim": "#a4c9ff",
+                        "on-primary-fixed-variant": "#004883",
+                        "secondary-container": "#afcefe",
+                        "secondary-fixed": "#d4e3ff",
+                        "secondary-fixed-dim": "#aac8f8",
+                        "surface-container-high": "#e7e8ea",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001c39",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeef0",
+                        "surface-container-low": "#f3f4f6",
+                        "surface-container-highest": "#e1e2e4",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#006b4d",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f8f9fb",
+                        "surface-tint": "#1960a6",
+                        "on-background": "#191c1e",
+                        "tertiary-fixed-dim": "#68dbae",
+                        "on-tertiary-fixed": "#002115",
+                        "on-tertiary-fixed-variant": "#00513a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "page-margin": "32px",
+                        "sidebar-width": "240px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "table-header": ["Inter"],
+                        "body-base": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "table-header": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-base": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fb;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-item {
+            background-color: #185fa5;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-[240px] h-full fixed left-0 top-0 bg-on-secondary-fixed dark:bg-on-secondary-fixed flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">tsunami</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">Monarch</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-secondary-fixed-variant font-bold">Lifeguard CRM</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-base text-body-base">Dashboard</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-base text-body-base">Clients</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-base text-body-base">Invoices</span>
+</a>
+<!-- Active Tab: Incidents -->
+<a class="bg-primary-container text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 active:opacity-90 transition-opacity" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-body-base text-body-base">Incidents</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 space-y-1">
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-base text-body-base">Settings</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-base text-body-base">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[240px] flex-1 flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface-container-lowest flex justify-between items-center px-gutter border-b border-outline-variant z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-extrabold text-on-surface">New Incident</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low rounded-full p-2 transition-all cursor-pointer">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low rounded-full p-2 transition-all cursor-pointer">help</span>
+<div class="h-8 w-px bg-outline-variant mx-1"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<p class="text-body-sm font-semibold text-on-surface">James Wilson</p>
+<p class="text-[10px] text-on-surface-variant">Senior Coordinator</p>
+</div>
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAik3VFsKeH6pLQtH697kv1U5sFLyykpBTAJAGdCWeJtOaGV8xsX_eT8sqXS563tZ5XL6njSMLnac_-XL1HDlVKiXJQpB_h7gAiiq3Qd362CnF9pn6ypp5TWUn1gMPhXX6qlCdfex7iusq6HeQHUmJMdMgUTmi2YLnJq1fKUgw0098MNAcCq4Yb-x4CCiw0FUz2P8MpL7shsDLAT7_pd39O_Afl92bls9Y-1oNuBzn7rEY-UjU-QgnUPKyMbN8gcpIWbkHV0m6fHUk"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="mt-16 p-page-margin flex justify-center">
+<div class="w-full max-w-4xl animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Page Title -->
+<div class="mb-8">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Log New Incident</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Please provide comprehensive details regarding the emergency response or safety event.</p>
+</div>
+<!-- Form Container (Bento-ish Grid layout) -->
+<form class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Basic Info Card -->
+<div class="md:col-span-12 lg:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h4 class="font-table-header text-table-header text-primary uppercase mb-6">General Information</h4>
+<div class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-outline text-[20px]">location_on</span>
+<input class="w-full h-9 pl-10 bg-white border border-outline-variant rounded-lg font-body-base text-body-base focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="e.g., North Shore Guard Stand 4" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Date &amp; Time</label>
+<input class="w-full h-9 px-3 bg-white border border-outline-variant rounded-lg font-body-base text-body-base focus:ring-2 focus:ring-primary focus:border-transparent outline-none" type="datetime-local"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Incident Type</label>
+<select class="w-full h-9 px-3 bg-white border border-outline-variant rounded-lg font-body-base text-body-base focus:ring-2 focus:ring-primary focus:border-transparent outline-none">
+<option>Select type...</option>
+<option>Water Rescue</option>
+<option>Medical Emergency</option>
+<option>Missing Person</option>
+<option>Environmental Hazard</option>
+<option>Conflict Resolution</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Severity Card -->
+<div class="md:col-span-12 lg:col-span-5 bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h4 class="font-table-header text-table-header text-primary uppercase mb-6">Classification</h4>
+<div class="mb-6">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4">Severity Level</label>
+<div class="space-y-3">
+<label class="flex items-center group cursor-pointer">
+<input class="hidden peer" name="severity" type="radio" value="low"/>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="ml-3 font-body-base text-body-base text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Low
+                                    </span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="hidden peer" name="severity" type="radio" value="medium"/>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="ml-3 font-body-base text-body-base text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span> Medium
+                                    </span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="hidden peer" name="severity" type="radio" value="high"/>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="ml-3 font-body-base text-body-base text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-orange-500"></span> High
+                                    </span>
+</label>
+<label class="flex items-center group cursor-pointer">
+<input class="hidden peer" name="severity" type="radio" value="critical"/>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="ml-3 font-body-base text-body-base text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600"></span> Critical
+                                    </span>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Lifeguard on Duty</label>
+<select class="w-full h-9 px-3 bg-white border border-outline-variant rounded-lg font-body-base text-body-base focus:ring-2 focus:ring-primary focus:border-transparent outline-none">
+<option>Assign Personnel...</option>
+<option>Sarah Miller</option>
+<option>David Chen</option>
+<option>Marcus Thorne</option>
+<option>Elena Rodriguez</option>
+</select>
+</div>
+</div>
+<!-- Description Card -->
+<div class="md:col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h4 class="font-table-header text-table-header text-primary uppercase mb-6">Detailed Narrative</h4>
+<div class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Description</label>
+<textarea class="w-full p-3 bg-white border border-outline-variant rounded-lg font-body-base text-body-base focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Describe the events leading up to and during the incident..." rows="4"></textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Outcome</label>
+<textarea class="w-full p-3 bg-white border border-outline-variant rounded-lg font-body-base text-body-base focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Describe the resolution, medical attention provided, or any pending actions..." rows="3"></textarea>
+</div>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="md:col-span-12 flex items-center justify-between mt-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-body-base">verified_user</span>
+<span class="font-body-sm text-body-sm">All logs are timestamped and encrypted for legal compliance.</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 border border-outline-variant text-on-primary-fixed-variant font-semibold rounded-lg hover:bg-surface-container-low transition-all" type="button">
+                                Save Draft
+                            </button>
+<button class="px-8 py-2 bg-on-secondary-fixed text-on-primary font-bold rounded-lg shadow-lg shadow-on-secondary-fixed/20 hover:opacity-90 active:scale-95 transition-all" type="submit">
+                                Submit Report
+                            </button>
+</div>
+</div>
+</form>
+<!-- Informational Graphic / Visual Relief -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="h-32 bg-surface-container-high rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A wide angle aerial shot of a pristine blue coastline with white sandy beaches and turquoise water. The lighting is bright and summery, reflecting the calm authority of a modern lifeguard monitoring system. The aesthetic is clean and professional with high-key lighting and a sense of vast, open space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGj5S6B9qu0Q2dhcBJTWH1wmYb_6G-rmYx3afJ8p_zMujda95Hrs1TujXKVK-oMxHFgBU-Nr6f3RmnMsDwRL9PUKwEQa4eSxbnm5iN88XVQZcq0nu8r7Vyhmc7C4OAL1mt7NAyJYZXHBccegvpzM8lI5VSNKNLUrWTjfjqeHFfSfSIHz_nqUFqnO5T8oUKMgj5ARWSYMkWeh3-Gtnfa9nv40oQBFnI7jpQezJQUyWdP2LQvj6lvcVRNsFiab0RcLS85tOhP9OTA64"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+<span class="text-white text-[10px] font-bold uppercase tracking-widest">Coastal Patrol Area</span>
+</div>
+</div>
+<div class="h-32 bg-surface-container-high rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A macro close-up of high-quality red and white life-saving equipment, including a rescue buoy and ropes. The focus is sharp, highlighting the professional textures of the gear. The lighting is soft and even, creating a corporate minimalist look that emphasizes reliability and preparedness within a modern emergency service environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA82nuqqbuVZ9q5sf5cX8o2FhNdTJ5aghMjKfmOX9sbUVwHGHX_-o7LIV01HJibu1ibJQU-SL0x2Wotxewk6nS2l6pk7W01Z1SJ1BFDCmQDA1b52IzQWZtxF-hzdmUfjczmyigTO2CQPrjGlTbpOYqoDVOTTEgbYUQh1Gk6TJXkH1N7kZzLu4FcIY-Dzx_XMJrNCM1_kKFHVsL3xHqStthvBBqGtaczQ_VXcl0RZR1kqxsaxgS_9uja2dIv5SU7t0fF9FhUZd84idQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+<span class="text-white text-[10px] font-bold uppercase tracking-widest">Equipment Inventory</span>
+</div>
+</div>
+<div class="h-32 bg-surface-container-high rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A minimalist architectural shot of a modern glass-walled lifeguard tower during golden hour. The building features clean lines and a structured corporate aesthetic. The lighting creates a warm yet professional mood, reflecting the 'calm authority' of the Monarch Lifeguard CRM platform. The color palette is composed of soft blues, warm golds, and deep navy accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYX1TkV6C5lJf44VviurneNLuthBy6Kty5bmokYV2T0jOsTwDTOkj0I3DJ3IP9hfal4KcPyHScyGyMxt5tm-347P5PXqxrSQFuO16v8KDLs6XYb54RL7vdiMYjs4Tbod4sEKtvs59rR8Cfh6rhQqMhCiESipURlUwz3vb3tBSCZgx49Xq1XndC6YNzWaktOmuoFHTz35Ce_SumVGGuH1IK_h8jt6bwg_We_be0NUw8rmwljTNlN30xCQYJR08LpPwt9zdVzoBGQI8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+<span class="text-white text-[10px] font-bold uppercase tracking-widest">Station Alpha Hub</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Atmosphere Micro-interaction -->
+<div class="fixed bottom-8 right-8 pointer-events-none opacity-20">
+<div class="w-64 h-64 bg-primary-container rounded-full blur-[100px] animate-pulse"></div>
+</div>
+<script>
+        // Micro-interaction for form focus
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.closest('.bg-surface-container-lowest')?.classList.add('ring-1', 'ring-primary-container/10');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.closest('.bg-surface-container-lowest')?.classList.remove('ring-1', 'ring-primary-container/10');
+            });
+        });
+
+        // Simple form submission handler
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span>';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = 'Report Logged';
+                btn.classList.replace('bg-on-secondary-fixed', 'bg-tertiary-container');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.replace('bg-tertiary-container', 'bg-on-secondary-fixed');
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body></html>

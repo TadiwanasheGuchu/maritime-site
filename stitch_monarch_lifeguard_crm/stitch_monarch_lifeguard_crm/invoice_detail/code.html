@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fb;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .a4-paper {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            margin: auto;
+            background: white;
+            box-shadow: 0 0 0 1px #e5e7eb;
+        }
+        @media print {
+            .no-print { display: none; }
+            .a4-paper { box-shadow: none; margin: 0; width: 100%; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#001c3a",
+                      "secondary": "#416089",
+                      "outline-variant": "#c2c6d2",
+                      "surface-bright": "#f8f9fb",
+                      "primary-container": "#185fa5",
+                      "on-secondary-container": "#385781",
+                      "on-error": "#ffffff",
+                      "inverse-surface": "#2e3132",
+                      "inverse-on-surface": "#f0f1f3",
+                      "surface-variant": "#e1e2e4",
+                      "surface-dim": "#d9dadc",
+                      "tertiary": "#005039",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#86f8c9",
+                      "on-tertiary-container": "#7aecbe",
+                      "on-secondary-fixed-variant": "#284870",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#d4e3ff",
+                      "on-primary-container": "#c1d9ff",
+                      "surface": "#f8f9fb",
+                      "inverse-primary": "#a4c9ff",
+                      "on-surface": "#191c1e",
+                      "on-surface-variant": "#424751",
+                      "outline": "#727782",
+                      "primary": "#004782",
+                      "primary-fixed-dim": "#a4c9ff",
+                      "on-primary-fixed-variant": "#004883",
+                      "secondary-container": "#afcefe",
+                      "secondary-fixed": "#d4e3ff",
+                      "secondary-fixed-dim": "#aac8f8",
+                      "surface-container-high": "#e7e8ea",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#001c39",
+                      "error": "#ba1a1a",
+                      "surface-container": "#edeef0",
+                      "surface-container-low": "#f3f4f6",
+                      "surface-container-highest": "#e1e2e4",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#006b4d",
+                      "on-tertiary": "#ffffff",
+                      "background": "#f8f9fb",
+                      "surface-tint": "#1960a6",
+                      "on-background": "#191c1e",
+                      "tertiary-fixed-dim": "#68dbae",
+                      "on-tertiary-fixed": "#002115",
+                      "on-tertiary-fixed-variant": "#00513a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "stack-lg": "24px",
+                      "stack-sm": "8px",
+                      "page-margin": "32px",
+                      "sidebar-width": "240px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "table-header": ["Inter"],
+                      "body-base": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"]
+              },
+              "fontSize": {
+                      "table-header": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-base": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background">
+<!-- SideNavBar -->
+<aside class="w-[240px] h-full fixed left-0 top-0 bg-on-secondary-fixed dark:bg-on-secondary-fixed flex flex-col py-6 no-print">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">Monarch</h1>
+<p class="text-xs text-on-secondary-fixed-variant opacity-70">Lifeguard CRM</p>
+</div>
+</div>
+<nav class="flex-1">
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-base text-body-base">Dashboard</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-base text-body-base">Clients</span>
+</a>
+<!-- Active Tab: Invoices -->
+<a class="bg-primary-container text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-opacity active:opacity-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-body-base text-body-base">Invoices</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span class="font-body-base text-body-base">Incidents</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-on-secondary-fixed-variant/20 pt-4">
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-base text-body-base">Settings</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-base text-body-base">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-gutter no-print z-10">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-extrabold text-on-surface">Invoice #INV-2023-001</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 mr-4 bg-surface-container-low px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search..." type="text"/>
+</div>
+<button class="hover:bg-surface-container-low rounded-full p-2 transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<button class="hover:bg-surface-container-low rounded-full p-2 transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary">help</span>
+</button>
+<div class="ml-4 flex items-center gap-3 border-l pl-4 border-outline-variant">
+<img class="w-8 h-8 rounded-full object-cover shadow-sm" data-alt="A professional headshot of a corporate administrator for a high-end emergency service provider. The person is middle-aged with a calm, authoritative expression, wearing a crisp white shirt. The background is a blurred modern office environment with soft, cool lighting, aligning with a professional and minimalist corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7UuG-240gyOyVWIziiPmcMszrEKOL_ARzKrPtYDZQV2XL1efCp7XsuNiGkqlvwpcRqE_HrsyB6UgHQs6osaTXMhUfS9bluJJblkOlEgcOEN0-FSPskjC00J7Ma8j3aqBPLkM3E4qseIltsrjQMxAyvcmJBC60Oym6WPy4QqjGJGna3cVwKHgrleGhnREIKn0kEbzMpTnIuv1jjPFWlQ7M8W2sPQbsfoWVhKPX_TdSlrFFiL4BWjbJvZy3FwVns_GKlQiZWNEhiE0"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[240px] pt-16 min-h-screen">
+<div class="p-page-margin max-w-6xl mx-auto">
+<!-- Breadcrumbs / Action Bar -->
+<div class="flex justify-between items-center mb-8 no-print">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<a class="hover:text-primary flex items-center gap-1 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        Back to Invoices
+                    </a>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-lg bg-white text-on-surface hover:bg-surface-container-low transition-colors font-label-md text-label-md" onclick="window.print()">
+<span class="material-symbols-outlined text-[20px]">print</span>
+                        Print / PDF
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:opacity-90 transition-opacity font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+                        Edit Invoice
+                    </button>
+</div>
+</div>
+<!-- A4 Layout Start -->
+<div class="a4-paper shadow-sm border border-outline-variant transition-all duration-300">
+<!-- Invoice Header -->
+<div class="flex justify-between mb-16">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary-container text-[32px]" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-headline-lg text-headline-lg font-extrabold tracking-tight">MONARCH</span>
+</div>
+<div class="text-on-surface-variant space-y-1">
+<p class="font-bold text-on-surface">Monarch Lifeguard &amp; Rescue Services</p>
+<p class="font-body-sm text-body-sm">122 Rescue Way, Coastal Plaza</p>
+<p class="font-body-sm text-body-sm">San Francisco, CA 94103</p>
+<p class="font-body-sm text-body-sm">United States</p>
+<p class="font-body-sm text-body-sm mt-4">contact@monarch-rescue.com</p>
+</div>
+</div>
+<div class="text-right">
+<h2 class="font-headline-lg text-headline-lg uppercase tracking-widest text-outline mb-6">Invoice</h2>
+<div class="space-y-2">
+<div class="flex justify-end gap-8">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Invoice No.</span>
+<span class="font-body-base text-body-base font-bold">INV-2023-001</span>
+</div>
+<div class="flex justify-end gap-8">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Issue Date</span>
+<span class="font-body-base text-body-base">Oct 24, 2023</span>
+</div>
+<div class="flex justify-end gap-8">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Due Date</span>
+<span class="font-body-base text-body-base">Nov 07, 2023</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Client Info Section -->
+<div class="grid grid-cols-2 gap-gutter mb-16">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase mb-4 border-b pb-1">Bill To</p>
+<div class="space-y-1">
+<p class="font-headline-md text-headline-md text-on-surface">Ocean View Waterfront Plaza</p>
+<p class="font-body-base text-body-base text-on-surface-variant">Attn: Sarah Jenkins, Facilities Director</p>
+<p class="font-body-base text-body-base text-on-surface-variant">45 Marine Drive</p>
+<p class="font-body-base text-body-base text-on-surface-variant">Santa Monica, CA 90401</p>
+<p class="font-body-base text-body-base text-on-surface-variant">sarah.jenkins@oceanviewwaterfront.com</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col justify-center border border-outline-variant">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Payment Status</span>
+<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full font-label-md text-[10px] font-bold uppercase tracking-wider">Unpaid</span>
+</div>
+<div class="text-right">
+<p class="text-xs text-on-surface-variant mb-1">Total Balance Due</p>
+<p class="text-[32px] font-extrabold text-primary">$4,852.50</p>
+</div>
+</div>
+</div>
+<!-- Line Items Table -->
+<div class="mb-12">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b-2 border-on-surface">
+<th class="font-table-header text-table-header py-4 uppercase">Description</th>
+<th class="font-table-header text-table-header py-4 uppercase text-right">Rate</th>
+<th class="font-table-header text-table-header py-4 uppercase text-center">Qty</th>
+<th class="font-table-header text-table-header py-4 uppercase text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr>
+<td class="py-6">
+<p class="font-body-base text-body-base font-bold text-on-surface">Advanced Lifeguard Staffing (Level II)</p>
+<p class="text-xs text-on-surface-variant">Weekly specialized monitoring for high-risk aquatic zones.</p>
+</td>
+<td class="py-6 text-right font-body-base text-body-base">$85.00/hr</td>
+<td class="py-6 text-center font-body-base text-body-base">40</td>
+<td class="py-6 text-right font-body-base text-body-base font-medium">$3,400.00</td>
+</tr>
+<tr>
+<td class="py-6">
+<p class="font-body-base text-body-base font-bold text-on-surface">Emergency Response Kit Replenishment</p>
+<p class="text-xs text-on-surface-variant">Oxygen cylinders, AED pads, and sterile medical consumables.</p>
+</td>
+<td class="py-6 text-right font-body-base text-body-base">$450.00</td>
+<td class="py-6 text-center font-body-base text-body-base">2</td>
+<td class="py-6 text-right font-body-base text-body-base font-medium">$900.00</td>
+</tr>
+<tr>
+<td class="py-6">
+<p class="font-body-base text-body-base font-bold text-on-surface">Facility Safety Audit &amp; Consultation</p>
+<p class="text-xs text-on-surface-variant">Quarterly compliance check for State rescue regulations.</p>
+</td>
+<td class="py-6 text-right font-body-base text-body-base">$250.00</td>
+<td class="py-6 text-center font-body-base text-body-base">1</td>
+<td class="py-6 text-right font-body-base text-body-base font-medium">$250.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Totals Section -->
+<div class="flex justify-end">
+<div class="w-1/3 space-y-4">
+<div class="flex justify-between border-b border-surface-container pb-2">
+<span class="text-on-surface-variant font-body-base text-body-base">Subtotal</span>
+<span class="font-body-base text-body-base">$4,550.00</span>
+</div>
+<div class="flex justify-between border-b border-surface-container pb-2">
+<span class="text-on-surface-variant font-body-base text-body-base">Tax (6.65%)</span>
+<span class="font-body-base text-body-base">$302.50</span>
+</div>
+<div class="flex justify-between pt-2">
+<span class="font-headline-md text-headline-md font-bold uppercase">Total</span>
+<span class="font-headline-md text-headline-md font-extrabold text-primary">$4,852.50</span>
+</div>
+</div>
+</div>
+<!-- Notes / Footer -->
+<div class="mt-24 pt-8 border-t border-outline-variant text-on-surface-variant">
+<p class="font-label-md text-label-md uppercase mb-2">Terms &amp; Conditions</p>
+<p class="font-body-sm text-body-sm italic">Please make checks payable to "Monarch Lifeguard &amp; Rescue Services". Payments are due within 14 days of invoice date. Late payments may be subject to a 1.5% monthly finance charge. Thank you for your continued partnership in water safety.</p>
+</div>
+</div>
+<!-- Sticky Action Bar for Web -->
+<div class="mt-8 flex justify-end no-print">
+<button class="flex items-center gap-3 px-8 py-4 bg-[#1d9e75] text-white rounded-lg shadow-lg hover:opacity-90 transition-all active:scale-95 duration-150" id="markPaidBtn" onclick="handleMarkPaid()">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-headline-md text-headline-md font-bold">Mark as Paid</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+        function handleMarkPaid() {
+            const btn = document.getElementById('markPaidBtn');
+            const statusBadge = document.querySelector('.bg-error-container');
+            
+            // Interaction Feedback
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">refresh</span> <span class="font-headline-md text-headline-md font-bold">Processing...</span>`;
+            
+            setTimeout(() => {
+                btn.classList.replace('bg-[#1d9e75]', 'bg-on-surface-variant');
+                btn.style.opacity = '0.7';
+                btn.style.pointerEvents = 'none';
+                btn.innerHTML = `<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">done_all</span> <span class="font-headline-md text-headline-md font-bold">Paid</span>`;
+                
+                statusBadge.classList.replace('bg-error-container', 'bg-tertiary-fixed');
+                statusBadge.classList.replace('text-on-error-container', 'text-on-tertiary-fixed');
+                statusBadge.textContent = 'Paid';
+                
+                // Visual Sparkle Effect
+                createParticles(btn);
+            }, 1000);
+        }
+
+        function createParticles(element) {
+            const colors = ['#1d9e75', '#86f8c9', '#005039'];
+            for (let i = 0; i < 12; i++) {
+                const p = document.createElement('div');
+                p.style.position = 'fixed';
+                p.style.width = '8px';
+                p.style.height = '8px';
+                p.style.borderRadius = '50%';
+                p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const rect = element.getBoundingClientRect();
+                p.style.left = (rect.left + rect.width / 2) + 'px';
+                p.style.top = (rect.top + rect.height / 2) + 'px';
+                p.style.zIndex = '100';
+                
+                document.body.appendChild(p);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                
+                p.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 1 },
+                    { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 800 + Math.random() * 400,
+                    easing: 'cubic-bezier(0.1, 0.9, 0.2, 1)'
+                }).onfinish = () => p.remove();
+            }
+        }
+    </script>
+</body></html>

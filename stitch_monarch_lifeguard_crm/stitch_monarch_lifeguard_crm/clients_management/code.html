@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clients | Monarch Lifeguard CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001c3a",
+                        "secondary": "#416089",
+                        "outline-variant": "#c2c6d2",
+                        "surface-bright": "#f8f9fb",
+                        "primary-container": "#185fa5",
+                        "on-secondary-container": "#385781",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "inverse-on-surface": "#f0f1f3",
+                        "surface-variant": "#e1e2e4",
+                        "surface-dim": "#d9dadc",
+                        "tertiary": "#005039",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#86f8c9",
+                        "on-tertiary-container": "#7aecbe",
+                        "on-secondary-fixed-variant": "#284870",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d4e3ff",
+                        "on-primary-container": "#c1d9ff",
+                        "surface": "#f8f9fb",
+                        "inverse-primary": "#a4c9ff",
+                        "on-surface": "#191c1e",
+                        "on-surface-variant": "#424751",
+                        "outline": "#727782",
+                        "primary": "#004782",
+                        "primary-fixed-dim": "#a4c9ff",
+                        "on-primary-fixed-variant": "#004883",
+                        "secondary-container": "#afcefe",
+                        "secondary-fixed": "#d4e3ff",
+                        "secondary-fixed-dim": "#aac8f8",
+                        "surface-container-high": "#e7e8ea",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001c39",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeef0",
+                        "surface-container-low": "#f3f4f6",
+                        "surface-container-highest": "#e1e2e4",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#006b4d",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f8f9fb",
+                        "surface-tint": "#1960a6",
+                        "on-background": "#191c1e",
+                        "tertiary-fixed-dim": "#68dbae",
+                        "on-tertiary-fixed": "#002115",
+                        "on-tertiary-fixed-variant": "#00513a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "page-margin": "32px",
+                        "sidebar-width": "240px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "table-header": ["Inter"],
+                        "body-base": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "table-header": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-base": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fb; }
+        .material-symbols-outlined { font-size: 20px; vertical-align: middle; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-on-background">
+<!-- SideNavBar Shell -->
+<aside class="bg-on-secondary-fixed dark:bg-on-secondary-fixed w-[240px] h-full fixed left-0 top-0 flex flex-col py-6 z-50">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary dark:text-on-primary">Monarch</h1>
+<p class="text-[10px] text-on-secondary-fixed-variant uppercase tracking-widest font-bold">Lifeguard CRM</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-base text-body-base">Dashboard</span>
+</a>
+<a class="bg-primary-container text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 transition-opacity" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-base text-body-base">Clients</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-base text-body-base">Invoices</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span class="font-body-base text-body-base">Incidents</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-on-secondary-fixed-variant/20 pt-4">
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-base text-body-base">Settings</span>
+</a>
+<a class="text-on-secondary-fixed-variant hover:text-on-primary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-base text-body-base">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="ml-[240px] flex flex-col min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-16 bg-surface-container-lowest dark:bg-surface-container-lowest flex justify-between items-center px-gutter z-40 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-lg text-body-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search clients..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container-high rounded-full p-2 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container-high rounded-full p-2 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center ml-2 border border-outline-variant">
+<span class="text-[10px] font-bold text-on-primary-fixed">JD</span>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="mt-16 p-page-margin">
+<!-- Page Header Area -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Clients</h2>
+<p class="text-on-surface-variant text-body-sm">Manage your facility partners and individual memberships.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2 pr-10 text-body-base text-on-surface-variant focus:ring-1 focus:ring-primary cursor-pointer min-w-[160px]">
+<option>All Client Types</option>
+<option>Municipal</option>
+<option>Private Resort</option>
+<option>Health Club</option>
+<option>Individual</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+<button class="bg-primary-container text-on-primary px-5 py-2 rounded-lg font-body-base flex items-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'wght' 600">add</span>
+                        Add Client
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats / Cards (Asymmetric Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-8">
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col justify-center">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Overview</h3>
+<span class="text-label-md bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full">+12% vs last month</span>
+</div>
+<div class="grid grid-cols-3 gap-8">
+<div>
+<p class="text-label-md text-on-surface-variant uppercase mb-1">Total Active</p>
+<p class="text-headline-lg font-extrabold text-primary">1,248</p>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant uppercase mb-1">Pending Sync</p>
+<p class="text-headline-lg font-extrabold text-tertiary">42</p>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant uppercase mb-1">In Review</p>
+<p class="text-headline-lg font-extrabold text-error">7</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 bg-primary-container text-on-primary rounded-xl p-6 relative overflow-hidden group">
+
+<div class="relative z-10">
+<span class="material-symbols-outlined text-3xl mb-4">analytics</span>
+<h3 class="font-headline-md text-headline-md mb-1">Annual Growth</h3>
+<p class="text-body-sm opacity-80 mb-6">Client acquisition is up 24% following the regional facility expansion.</p>
+<button class="bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/30 px-4 py-2 rounded-lg text-body-sm transition-all">
+                            View Report
+                        </button>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Name</th>
+<th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Type</th>
+<th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Contact</th>
+<th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Phone</th>
+<th class="px-6 py-4 font-table-header text-table-header text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-md object-cover border border-outline-variant" data-alt="A professional architectural photograph of a luxury resort swimming pool area with clean blue water and modern lounge furniture. The setting is bright and sunny, featuring a corporate modern aesthetic with high-quality surfaces and a serene, upscale atmosphere. The color palette is dominated by crisp whites and deep aquatic blues, echoing a professional and high-end lifeguard management service environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH8CqlFn8EsgWaLj1OJIFapmeShTg-lkAkNFpeIcv5Pv_noLg_9MIqYARfbgBJlnp3miFL5X_mCxiybMi5XN2a9l3p_EhmLOcmZE3wDyjnmymZnxgmGSmAmpL-hD5BZB1e_i3Gk_sja_bPijU3yPIwi-7jfFQcOdZ6jj23XMWaAFmxSfivdKg6ZbxZHsPIPQdsKSkWpOW0L0SoIi2JJouUoPnsbV_m_cZHVQgxioDUAYf4lCprfHgiXVSDkn6tCigu73LNKoOwfXc"/>
+<span class="font-body-base font-semibold text-on-surface">Blue Wave Aquatic Center</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-container-high rounded text-body-sm text-on-surface-variant">Municipal</span>
+</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant">Sarah Jenkins</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant font-mono">(555) 012-3456</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[11px] font-bold uppercase tracking-wider">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-md object-cover border border-outline-variant" data-alt="A premium commercial hotel exterior with a large, perfectly maintained pool deck area during a bright day. The image captures a clean, minimalist architectural style with symmetrical elements and a professional tone. The lighting is balanced and clear, emphasizing the reliability and structured nature of a corporate security and lifeguard facility management system. Deep navy and cool gray tones are subtly present." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-l3muESjsCsuLK0Uf1JdcoTY8XyhFfNoQ0jC1HrBbXnxrYURwPg3DnUHZaY_d-UrUWdhpPiBKiKV7FbdhXCXqfxnGYNaa0Mx7eG1_JkEQ8nWeGMigfX2qV1heKROPM5Jhquuqf7GuiLKLx4ehAhf-387lxwN7OBMsnsSk8TQjbhqVnkW0XPMoFith0w2DdKrTjyJ-1iFzPH9Po7_bOT2UcpIlR0-2flZSZaDEHi4VCtHMdTXPlbab27i6pL-Wh8hJfoaJu13QEZo"/>
+<span class="font-body-base font-semibold text-on-surface">Grand Horizon Resort</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-container-high rounded text-body-sm text-on-surface-variant">Private Resort</span>
+</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant">Marcus Thorne</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant font-mono">(555) 098-7654</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[11px] font-bold uppercase tracking-wider">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-md bg-secondary-fixed flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary-container">person</span>
+</div>
+<span class="font-body-base font-semibold text-on-surface">Robert Sterling</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-container-high rounded text-body-sm text-on-surface-variant">Individual</span>
+</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant">Robert Sterling</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant font-mono">(555) 234-5678</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-[11px] font-bold uppercase tracking-wider">Suspended</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-md object-cover border border-outline-variant" data-alt="A clean, brightly lit interior of a modern high-end gym and fitness center with large windows and polished floors. The atmosphere is professional and energetic, featuring minimalist design and functional equipment. The image uses a cool color palette of whites, grays, and deep blues to convey trust and operational excellence. The lighting is diffused and uniform, creating a calm yet authoritative visual environment suitable for a lifeguard service CRM." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMY_tq7kySiWgt9gViURBjrDd0yO6u0q6dPmnEVM80niZoEW5rD4f9Yln69CtRpR_5rR14vu-LWinK_Wd_8vZXjcQ9YjxzDI88ZUjOPwJUS1huwQlRCv0k6o3JN4Xn0FSQEkTvSbmQJDZ6Y5D4g4dPOp0YXESEwN2KBekoYyhW5n1Xg6zTFAwWKdmLrST8od1QGF4iwL2YCr9yg87frXLN7eGspksAe-NNhaGryAed9r6ff6DockhxVU7NtlPbxZiyLUd79wOL7Cw"/>
+<span class="font-body-base font-semibold text-on-surface">Elite Fitness Center</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-container-high rounded text-body-sm text-on-surface-variant">Health Club</span>
+</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant">Linda Wu</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant font-mono">(555) 456-7890</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[11px] font-bold uppercase tracking-wider">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-md object-cover border border-outline-variant" data-alt="A modern university campus recreation center with architectural glass and clean lines under a clear afternoon sky. The image emphasizes professional organization, safety, and community management. The lighting is natural and bright, supporting a minimalist and corporate aesthetic. The visual focus is on the structural integrity and professional maintenance of a public facility, mirroring the core values of a lifeguard management system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClDfIXC5t46nradGTODcbhNa926FLYi6ZKmEvKeeUMb8QCxkp4kVSs9-7_v5uDXEiHBTF8U2NLdn8Ll83akvJ8wVf2kyEpNb3K0wXwTEjz67rcLw9tamrG87MewFUhuDCW5nC3kUqKNOBaCDC_GPTJHljqmqIIix-tgwt04k1IKUapcYmmGvloUNw8JxjPbaPXumAa5iQ7K6Wv5bIODZVq16Gj8n30-9Wf8sqG87PBbUHiTszMas8iMoMxUrZQcch3gJX3DbI2a34"/>
+<span class="font-body-base font-semibold text-on-surface">North State University</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-surface-container-high rounded text-body-sm text-on-surface-variant">Municipal</span>
+</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant">Gary Oldman</td>
+<td class="px-6 py-4 text-body-base text-on-surface-variant font-mono">(555) 678-1234</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-fixed text-primary rounded-full text-[11px] font-bold uppercase tracking-wider">Pending</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-lowest border-t border-outline-variant flex items-center justify-between">
+<p class="text-body-sm text-on-surface-variant">Showing 5 of 1,248 clients</p>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded-md hover:bg-surface-container-low text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-md bg-primary-container text-white text-body-sm font-bold">1</button>
+<button class="w-8 h-8 rounded-md hover:bg-surface-container-low text-on-surface-variant text-body-sm">2</button>
+<button class="w-8 h-8 rounded-md hover:bg-surface-container-low text-on-surface-variant text-body-sm">3</button>
+<button class="p-1.5 rounded-md hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Atmosphere Script (Micro-interactions) -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousedown', () => {
+                    btn.classList.add('scale-95');
+                });
+                btn.addEventListener('mouseup', () => {
+                    btn.classList.remove('scale-95');
+                });
+            });
+        });
+    </script>
+</body></html>

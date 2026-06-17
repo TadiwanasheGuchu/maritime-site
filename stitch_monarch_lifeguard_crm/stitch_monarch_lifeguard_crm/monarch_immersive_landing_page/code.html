@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monarch Lifeguard &amp; Emergency Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-dim": "#d9dadc",
+                        "on-secondary-fixed-variant": "#284870",
+                        "inverse-on-surface": "#f0f1f3",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#7aecbe",
+                        "on-tertiary-fixed-variant": "#00513a",
+                        "on-primary-container": "#c1d9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-surface-variant": "#424751",
+                        "inverse-surface": "#2e3132",
+                        "surface": "#f8f9fb",
+                        "secondary-fixed-dim": "#aac8f8",
+                        "outline": "#727782",
+                        "surface-variant": "#e1e2e4",
+                        "on-tertiary-fixed": "#002115",
+                        "inverse-primary": "#a4c9ff",
+                        "on-secondary-container": "#385781",
+                        "on-error-container": "#93000a",
+                        "background": "#020e1f",
+                        "secondary-container": "#afcefe",
+                        "on-error": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "primary-container": "#185fa5",
+                        "surface-container-low": "#f3f4f6",
+                        "primary-fixed-dim": "#a4c9ff",
+                        "surface-container": "#edeef0",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e1e2e4",
+                        "on-primary-fixed-variant": "#004883",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#1960a6",
+                        "tertiary": "#1d9e75",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#006b4d",
+                        "secondary-fixed": "#d4e3ff",
+                        "on-secondary-fixed": "#001c3a",
+                        "surface-bright": "#f8f9fb",
+                        "on-primary-fixed": "#001c39",
+                        "primary-fixed": "#d4e3ff",
+                        "outline-variant": "#c2c6d2",
+                        "tertiary-fixed-dim": "#68dbae",
+                        "surface-container-high": "#e7e8ea",
+                        "primary": "#042c53",
+                        "secondary": "#416089",
+                        "tertiary-fixed": "#86f8c9"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Bebas Neue", "sans-serif"],
+                        "body-base": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "hero-lg": ["80px", { lineHeight: "1", letterSpacing: "0.02em" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "body-base": ["14px", { lineHeight: "20px" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #020e1f;
+            cursor: none;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover {
+            border-bottom: 2px solid #1d9e75;
+            box-shadow: 0 10px 40px -10px rgba(29, 158, 117, 0.3);
+        }
+        .teal-glow {
+            text-shadow: 0 0 20px rgba(29, 158, 117, 0.8);
+        }
+        .custom-cursor {
+            width: 12px;
+            height: 12px;
+            background: #1d9e75;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 15px #1d9e75, 0 0 30px #1d9e75;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+        .cursor-trail {
+            width: 24px;
+            height: 24px;
+            border: 1px solid rgba(29, 158, 117, 0.4);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease-out;
+        }
+        .perspective-grid {
+            perspective: 1000px;
+        }
+        .angled-card {
+            transform: rotateY(-15deg) rotateX(5deg);
+        }
+        .angled-card:hover {
+            transform: rotateY(0) rotateX(0) scale(1.05);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-scrolled {
+            background: rgba(2, 14, 31, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .carousel-item {
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .wave-animation {
+            animation: wave 10s linear infinite;
+        }
+    </style>
+</head>
+<body class="font-body-base text-on-primary">
+<div class="custom-cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursor-trail"></div>
+<!-- STITCH_SHADER_START:ANIMATION_7 class="fixed inset-0 w-full h-full opacity-40 pointer-events-none z-0" -->
+<div class="fixed inset-0 w-full h-full opacity-40 pointer-events-none z-0" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_7" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_7');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+float noise(vec2 p) {
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec3 color = vec3(0.0078, 0.0549, 0.1216); // #020e1f
+    
+    // Simple particle/spray effect
+    float n = noise(uv + u_time * 0.05);
+    float particles = pow(n, 20.0) * 0.3;
+    
+    // Add some depth with a slow moving gradient
+    float wave = sin(uv.y * 10.0 + u_time) * 0.05;
+    color += vec3(0.1137, 0.6196, 0.4588) * particles; // teal glow
+    
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_7 -->
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 px-page-margin flex justify-between items-center" id="navbar">
+<div class="flex items-center gap-3">
+<span class="font-headline-lg text-4xl text-white tracking-wider">MONARCH</span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-on-primary/80 font-medium tracking-wide">
+<a class="hover:text-tertiary transition-colors" href="#services">Services</a>
+<a class="hover:text-tertiary transition-colors" href="#stats">Operational Reach</a>
+<a class="hover:text-tertiary transition-colors" href="#courses">Training</a>
+<a class="hover:text-tertiary transition-colors" href="#contact">Contact</a>
+</div>
+<button class="px-6 py-2 border-2 border-tertiary/50 rounded-full text-tertiary font-bold hover:bg-tertiary hover:text-white transition-all shadow-[0_0_15px_rgba(29,158,117,0.2)]">
+            GET A QUOTE
+        </button>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen flex flex-col items-center justify-center text-center px-4 z-10">
+<!-- STITCH_THREEJS_START:ANIMATION_8 class="absolute inset-0 w-full h-full -z-10" -->
+<div class="absolute inset-0 w-full h-full -z-10" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_8" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_8');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const scene = new THREE.Scene();
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Create Lifeguard Buoy (Torus)
+const geometry = new THREE.TorusGeometry(2, 0.6, 32, 100);
+const material = new THREE.MeshPhongMaterial({ 
+    color: 0x1d9e75, 
+    emissive: 0x1d9e75,
+    emissiveIntensity: 0.5,
+    shininess: 100
+});
+const buoy = new THREE.Mesh(geometry, material);
+scene.add(buoy);
+
+// Lights
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(5, 5, 5);
+scene.add(light);
+const ambientLight = new THREE.AmbientLight(0x404040);
+scene.add(ambientLight);
+
+camera.position.z = 8;
+
+function animate() {
+    requestAnimationFrame(animate);
+    buoy.rotation.y += 0.01;
+    buoy.rotation.x += 0.005;
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_8 -->
+<div class="reveal active">
+<p class="text-tertiary font-bold tracking-[0.4em] mb-4 text-sm md:text-base">ELITE OCEAN RESCUE &amp; TRAINING</p>
+<h1 class="font-headline-lg text-hero-lg md:text-[120px] text-white teal-glow mb-6 leading-none">
+                GUARDING <br/> NAMIBIA'S WATERS
+            </h1>
+<p class="max-w-2xl mx-auto text-white/60 text-lg md:text-xl font-light mb-10 leading-relaxed">
+                Setting the gold standard for maritime safety, emergency medical response, and professional lifeguard certification across the Skeleton Coast and beyond.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-10 py-4 bg-tertiary text-white font-bold rounded-lg hover:translate-y-[-5px] transition-transform shadow-lg">
+                    OPERATIONAL SERVICES
+                </button>
+<button class="px-10 py-4 glass-card text-white font-bold rounded-lg hover:translate-y-[-5px] transition-transform">
+                    VIEW ACADEMY
+                </button>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="relative py-32 px-page-margin z-10 bg-gradient-to-b from-transparent to-background/50" id="services">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16 text-center reveal">
+<h2 class="font-headline-lg text-5xl text-white mb-2">PRECISION SERVICES</h2>
+<div class="w-20 h-1 bg-tertiary mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="glass-card p-10 rounded-2xl flex flex-col items-center text-center reveal group">
+<div class="w-16 h-16 mb-8 flex items-center justify-center rounded-full bg-tertiary/10 text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="anchor">anchor</span>
+</div>
+<h3 class="font-headline-lg text-3xl text-white mb-4">MARITIME PATROL</h3>
+<p class="text-white/60 text-sm leading-relaxed mb-6">High-speed coastal surveillance and active patrol services for private beaches, events, and commercial ports.</p>
+<a class="text-tertiary font-bold text-xs tracking-widest mt-auto" href="#">LEARN MORE →</a>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-10 rounded-2xl flex flex-col items-center text-center reveal group">
+<div class="w-16 h-16 mb-8 flex items-center justify-center rounded-full bg-tertiary/10 text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="rescue_ring" style="font-variation-settings: 'FILL' 1;">recycling</span>
+</div>
+<h3 class="font-headline-lg text-3xl text-white mb-4">SEARCH &amp; RESCUE</h3>
+<p class="text-white/60 text-sm leading-relaxed mb-6">Rapid response 24/7 emergency dispatch for water-based incidents using advanced tracking and rescue equipment.</p>
+<a class="text-tertiary font-bold text-xs tracking-widest mt-auto" href="#">LEARN MORE →</a>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-10 rounded-2xl flex flex-col items-center text-center reveal group">
+<div class="w-16 h-16 mb-8 flex items-center justify-center rounded-full bg-tertiary/10 text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="medical_cross" style="font-variation-settings: 'FILL' 1;">medical_mask</span>
+</div>
+<h3 class="font-headline-lg text-3xl text-white mb-4">TACTICAL MEDIC</h3>
+<p class="text-white/60 text-sm leading-relaxed mb-6">Specialized trauma care in high-stakes environments, provided by certified paramedics and emergency technicians.</p>
+<a class="text-tertiary font-bold text-xs tracking-widest mt-auto" href="#">LEARN MORE →</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="relative py-24 px-page-margin z-10" id="stats">
+<div class="max-w-7xl mx-auto glass-card rounded-3xl p-16 flex flex-wrap justify-center gap-12 md:gap-24">
+<div class="text-center reveal">
+<div class="text-6xl md:text-8xl font-headline-lg text-tertiary teal-glow counter" data-target="1500">0</div>
+<div class="text-white/40 font-bold tracking-widest text-sm mt-2 uppercase">Lives Secured</div>
+</div>
+<div class="text-center reveal">
+<div class="text-6xl md:text-8xl font-headline-lg text-tertiary teal-glow counter" data-target="24">0</div>
+<div class="text-white/40 font-bold tracking-widest text-sm mt-2 uppercase">Hours Active</div>
+</div>
+<div class="text-center reveal">
+<div class="text-6xl md:text-8xl font-headline-lg text-tertiary teal-glow counter" data-target="850">0</div>
+<div class="text-white/40 font-bold tracking-widest text-sm mt-2 uppercase">Elite Guards</div>
+</div>
+<div class="text-center reveal">
+<div class="text-6xl md:text-8xl font-headline-lg text-tertiary teal-glow counter" data-target="100">0</div>
+<div class="text-white/40 font-bold tracking-widest text-sm mt-2 uppercase">Coastline %</div>
+</div>
+</div>
+</section>
+<!-- Courses Section -->
+<section class="relative py-32 px-page-margin z-10 overflow-hidden" id="courses">
+<div class="max-w-7xl mx-auto">
+<div class="mb-20 reveal">
+<p class="text-tertiary font-bold tracking-[0.2em] text-sm mb-2">MONARCH ACADEMY</p>
+<h2 class="font-headline-lg text-5xl text-white">PROFESSIONAL TRAINING</h2>
+</div>
+<div class="perspective-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="angled-card glass-card p-6 rounded-xl reveal transition-all duration-500">
+<img class="w-full h-48 object-cover rounded-lg mb-6 grayscale hover:grayscale-0 transition-all duration-500" data-alt="A professional lifeguard in a red uniform scanning the horizon during a golden hour sunset, with calm ocean waves in the background. The lighting is cinematic, focusing on the profile of the guard, emphasizing a professional, high-stakes operational atmosphere with deep navy and teal color grading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcu6Xmd2rTwB6VhkXxhdKJ34H4hqd9DmDQfa4P0eYtuM52Gt7HJ3A7l2_4Y_KfKMXuE3sqtIO7Myjv7byvRYPtYFczhszzs3RHCFmdwhbTySfBOHwYSxlimxe2YSdnjOc8XzG2tcrSTH7JRLNZ9eeeYnRs-tqikv_pGgkU2c6TO-3iz5PCf00AVyVfJRGW1yaHXYlWO9oBSzgmX1unuHRReVvCLS3MTTAW9MpPp-j-DA44jqjtFAamrvD1bQbwn1pQq-2yber759g"/>
+<h4 class="text-white font-bold text-lg mb-2">Ocean Professional</h4>
+<p class="text-white/50 text-xs mb-4">Elite level lifeguard certification for open ocean environments.</p>
+<div class="flex items-center justify-between">
+<span class="text-tertiary font-bold">$499</span>
+<button class="text-white/30 hover:text-white transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div class="angled-card glass-card p-6 rounded-xl reveal transition-all duration-500" style="transition-delay: 100ms;">
+<img class="w-full h-48 object-cover rounded-lg mb-6 grayscale hover:grayscale-0 transition-all duration-500" data-alt="Close up of a medical professional's hands performing emergency medical care on a high-fidelity simulation manikin in a dimly lit, blue-toned medical training facility. The scene is sharp and clinical, with a high-contrast teal and navy aesthetic to match a premium emergency services brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUOWhkz1bBHdC1CITrJ-hqzfNnVNIsIDNtf9FUlDBgNct2patjdTBjSP7isIxBcJwiyPc2o_WpZS-6gT5o1fTp5Kd2m600lvPbwTB7DhYe6UWSq_UObpr23k8ZfFazgTKaCjEzwVGmauyRmkoF-uUot_bMEw_ddV7izwNshCtyuTaAz3Ovv3o3vCoOgm-_rT_Kqdi7JE318hpkSiDqkRxvn1LUJTOrkDCialOlz32joinz-mCbfdLluwC03CzrbMCBcMbCnopgBXM"/>
+<h4 class="text-white font-bold text-lg mb-2">EMS Foundation</h4>
+<p class="text-white/50 text-xs mb-4">Core emergency medical skills for first responders and public safety.</p>
+<div class="flex items-center justify-between">
+<span class="text-tertiary font-bold">$299</span>
+<button class="text-white/30 hover:text-white transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div class="angled-card glass-card p-6 rounded-xl reveal transition-all duration-500" style="transition-delay: 200ms;">
+<img class="w-full h-48 object-cover rounded-lg mb-6 grayscale hover:grayscale-0 transition-all duration-500" data-alt="A high-speed orange rescue boat cutting through deep blue sea water, creating white foam and spray, under a dramatic dark sky. The aesthetic is action-oriented and powerful, using a teal-accented dark ocean color palette to convey operational excellence and speed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh5i46SiDkSchF1zhtUgAqvU4taaE0vfTJT7I-CoWpBDIJA5kaf2QvdLr5UGrJPWAwB5Bk44rpJA1sanbCQR5cfPmo0bDz25JbUVU7I2g-ATF3FqnrQG_YiG2dvV_nhGk5RQJ7ILS0CjvnlwzQaxhcP2C99ox_afVNnEPqbOKlwN2y38cQ8Wzois-CDDX8dNtPA8m2ZA2pnkCgxSpcRgZLXLV9b_zLL-0LH7lSuBpnbWYNm2_ZpQMSNg_-9FB5k1hqTycigqBjP4A"/>
+<h4 class="text-white font-bold text-lg mb-2">Jet Ski Rescue</h4>
+<p class="text-white/50 text-xs mb-4">Advanced watercraft handling and rescue techniques for surf zones.</p>
+<div class="flex items-center justify-between">
+<span class="text-tertiary font-bold">$650</span>
+<button class="text-white/30 hover:text-white transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div class="angled-card glass-card p-6 rounded-xl reveal transition-all duration-500" style="transition-delay: 300ms;">
+<img class="w-full h-48 object-cover rounded-lg mb-6 grayscale hover:grayscale-0 transition-all duration-500" data-alt="A group of corporate professionals in a modern glass-walled boardroom undergoing CPR training with medical instructors. The office is clean and minimalist with cool blue lighting and a professional, calm, authoritative mood consistent with a high-end corporate emergency services training center." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUGthhmuIyjZBWTOURdZPj2Ty8EDWP565sy_Yb_DNcgHLdpWcmpojtw6BD0uvhnfgmqnZiITOU-Gb9tHjY358QgF__uSH2XdtjvJO435eKD2je1xgxx8yN-nU5511Dgg9GQaqazjzsanbzAVvNlozmCTwHmjJjC5wC67tzgyIq-j2f9zqWCAo6GeT9cAw8r5EqOSOPzhhIENh1g2momnsbIkNtYtwVW5jBhYhWWegylwrfMbD3v7KU5ZtYawTmBlDkGlg6M99dtLM"/>
+<h4 class="text-white font-bold text-lg mb-2">Corporate First Aid</h4>
+<p class="text-white/50 text-xs mb-4">Bespoke onsite safety training for businesses and industrial sites.</p>
+<div class="flex items-center justify-between">
+<span class="text-tertiary font-bold">$150</span>
+<button class="text-white/30 hover:text-white transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="relative py-32 px-page-margin z-10">
+<div class="max-w-7xl mx-auto overflow-hidden">
+<h2 class="font-headline-lg text-4xl text-white text-center mb-16 reveal">OPERATIONAL TRUST</h2>
+<div class="flex gap-10 cursor-grab active:cursor-grabbing" id="carousel">
+<!-- Testimonial 1 -->
+<div class="flex-shrink-0 w-[400px] glass-card p-10 rounded-2xl reveal carousel-item">
+<div class="flex gap-1 text-tertiary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-white/70 italic mb-8 leading-relaxed">"Monarch redefined what coastal safety means for our resort. Their team is disciplined, highly skilled, and professional."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary overflow-hidden border border-tertiary">
+<img class="w-full h-full object-cover" data-alt="A portrait of a confident middle-aged man in business attire, smiling slightly against a soft-focus background of a coastal luxury resort. The image is professionally lit with a cool, high-end corporate aesthetic, emphasizing trust and authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASv6p7lpha4ChmuwMrL4rmk6TGzvZA-cM4jNNsKaLjeslStlbeyxK9EMyss2o8iRMPFUXiSvB60nELemZ8ax-befUiuFFZkDq2ETiZhCZFY7iam4oITctAHiSIFS-AZAc0DgeM5Mu-k0aPXiTacg_uXkx3Z5fqv5h_oLKvIf0pmNN574TYMDTL3emKHVGMhgjvVl_VxYqkLHEbYQ8lDghGajADrlvz_d--4ymElXkfH2brxeWi4AA0_Y33w-pwSc7KsLgGNk-GDgo"/>
+</div>
+<div>
+<div class="text-white font-bold">Stefan de Beer</div>
+<div class="text-white/40 text-xs">Director, Atlantic Sands Resort</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="flex-shrink-0 w-[400px] glass-card p-10 rounded-2xl reveal carousel-item" style="transition-delay: 200ms;">
+<div class="flex gap-1 text-tertiary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-white/70 italic mb-8 leading-relaxed">"Their response time during a major shoreline incident was flawless. The medical triage team saved lives that day. Truly elite."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary overflow-hidden border border-tertiary">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female official in a dark navy service uniform, looking authoritative and professional. The background is a slightly blurred command center with cool blue and teal lighting, reinforcing a theme of emergency management and elite operational standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsM2RYNYgSjr3DAYEEq7NLJflH-8ExUzTy4LZ1oZnM1crxvZYRKydgRyzYkMWWPsqF69kNC8gCTC4Oes2nIR8TpmyUPqh6Wr8k6Oijc68Q-agQZsstkiHnuDTx1YJxz4SDqCKkyi5bzyXLK3q2HKtQgccn_Z0TBJ05eooF7pbiCpIvWaLXW5zii1DuDCi_HtiOmwUgeKKT-tiSAipNjOqfl8BCacYpOQSY3qN-2xSQztvBlOWZOiCzZNrCpecZQkUfIBHrJFzuGVI"/>
+</div>
+<div>
+<div class="text-white font-bold">Cap. Sarah van Wyk</div>
+<div class="text-white/40 text-xs">Coastal Patrol Division</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="flex-shrink-0 w-[400px] glass-card p-10 rounded-2xl reveal carousel-item" style="transition-delay: 400ms;">
+<div class="flex gap-1 text-tertiary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-white/70 italic mb-8 leading-relaxed">"As an event organizer, safety is my top concern. Monarch provides a peace of mind that no other agency in the region can match."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary overflow-hidden border border-tertiary">
+<img class="w-full h-full object-cover" data-alt="A sharp, clear headshot of a professional man in his 30s with a modern hairstyle, against a clean, architectural backdrop. The color palette is composed of cold grays, deep navies, and subtle teal reflections, matching a cinematic, premium design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkGWosYG-06LgOYnNe5lcI_EEuTuCYZY4xz3rz-wYL8wy7Xvg7TxxeGd2ILsjOKD-afidNmYEBn2ZhE9kNqNoexnAXwsz05y4K4VQRXD-Dldo7QOqp2c0hfYopXnsXXrbVo3m8-3tmYL09jqIFBwHP-gCSukz7GRsHb6U8XaJ0tDNIKC7FFE9-7rr_rYPQMlKf-SN0vxle59RcICKfeqwFqpajqCrr9Pyg8jQf7crvnFlOw_1VZmMC0EQO7ScrpRpXyf48Q_ep5TY"/>
+</div>
+<div>
+<div class="text-white font-bold">Jason Mbeki</div>
+<div class="text-white/40 text-xs">Head of Operations, NAM-Fest</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="relative py-32 px-page-margin z-10" id="contact">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="reveal">
+<h2 class="font-headline-lg text-8xl text-white mb-6 drop-shadow-[0_0_15px_rgba(29,158,117,0.4)]">REACH US</h2>
+<p class="text-white/60 text-lg mb-10 max-w-md">Secure your premises, train your staff, or request emergency planning today. Our operators are standing by.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4 group">
+<div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div class="text-white/80">+264 (0) 81 123 4567</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="text-white/80">ops@monarchlifeguard.com</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="text-white/80">Swakopmund Operational Hub, Namibia</div>
+</div>
+</div>
+</div>
+<div class="glass-card p-10 rounded-3xl reveal" style="transition-delay: 200ms;">
+<form class="space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs text-white/40 font-bold uppercase tracking-widest">Full Name</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white focus:border-tertiary focus:ring-0 transition-all outline-none" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs text-white/40 font-bold uppercase tracking-widest">Contact Number</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white focus:border-tertiary focus:ring-0 transition-all outline-none" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs text-white/40 font-bold uppercase tracking-widest">Inquiry Type</label>
+<select class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white/60 focus:border-tertiary focus:ring-0 transition-all outline-none appearance-none">
+<option class="bg-primary">Operational Services</option>
+<option class="bg-primary">Training / Courses</option>
+<option class="bg-primary">Emergency Support</option>
+<option class="bg-primary">Recruitment</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs text-white/40 font-bold uppercase tracking-widest">Mission Details</label>
+<textarea class="w-full bg-white/5 border border-white/10 rounded-lg py-3 px-4 text-white focus:border-tertiary focus:ring-0 transition-all outline-none" rows="4"></textarea>
+</div>
+<button class="w-full py-4 bg-tertiary text-white font-bold rounded-lg shadow-lg hover:bg-tertiary/80 transition-all">SUBMIT REQUEST</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="relative bg-primary pt-24 pb-12 z-10 overflow-hidden">
+<div class="absolute top-0 left-0 w-full overflow-hidden leading-none transform translate-y-[-99%]">
+<svg class="relative block w-[200%] h-24 wave-animation" preserveaspectratio="none" viewbox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#042c53"></path>
+</svg>
+</div>
+<div class="max-w-7xl mx-auto px-page-margin">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-1 md:col-span-2">
+<h3 class="font-headline-lg text-4xl text-white tracking-widest mb-6 uppercase">MONARCH</h3>
+<p class="text-white/40 text-sm max-w-xs leading-relaxed">Namibia's premiere Lifeguard and Emergency Services provider. Professionalism, readiness, and excellence in every deployment.</p>
+</div>
+<div>
+<h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Quick Links</h4>
+<ul class="space-y-4 text-white/40 text-sm">
+<li><a class="hover:text-tertiary transition-colors" href="#">Emergency Protocol</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Training Calendar</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Equipment Shop</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Social Reach</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-tertiary hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-tertiary hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-tertiary hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined text-sm">group</span>
+</a>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-white/20 text-xs">
+<p>© 2024 MONARCH LIFEGUARD &amp; EMERGENCY SERVICES. ALL RIGHTS RESERVED.</p>
+<p>CERTIFIED OPERATIONAL EXCELLENCE</p>
+</div>
+</div>
+</footer>
+<script>
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorTrail = document.getElementById('cursor-trail');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorTrail.style.left = e.clientX + 'px';
+                cursorTrail.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.width = '18px';
+            cursor.style.height = '18px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.width = '12px';
+            cursor.style.height = '12px';
+        });
+
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+                nav.classList.remove('py-4');
+                nav.classList.add('py-2');
+            } else {
+                nav.classList.remove('nav-scrolled');
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+
+        // Reveal Animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Start counters if it's a counter element
+                    if (entry.target.classList.contains('counter')) {
+                        startCounter(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .counter').forEach(el => revealObserver.observe(el));
+
+        // Counters
+        function startCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            let count = 0;
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    el.innerText = target;
+                    clearInterval(timer);
+                } else {
+                    el.innerText = Math.floor(count);
+                }
+            }, 16);
+        }
+
+        // Testimonial Carousel Interaction
+        const carousel = document.getElementById('carousel');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        carousel.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body></html>

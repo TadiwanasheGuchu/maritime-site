@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------ *
+ * Design tokens (Monarch Lifeguard — immersive landing)
+ * Tailwind v4 reads these and generates utilities like
+ * `bg-background`, `text-tertiary`, `font-display`, etc.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-background: #020e1f;
+  --color-surface: #02152e;
+  --color-surface-2: #03203f;
+  --color-primary: #042c53;
+  --color-primary-bright: #185fa5;
+  --color-secondary: #416089;
+  --color-tertiary: #1d9e75;
+  --color-tertiary-bright: #22c08e;
+  --color-on-primary: #e8eef6;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bebas), "Bebas Neue", ui-sans-serif, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-on-primary);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(29, 158, 117, 0.35);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #020e1f;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(29, 158, 117, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(29, 158, 117, 0.7);
+}
+
+/* ------------------------------------------------------------------ *
+ * Components / utilities
+ * ------------------------------------------------------------------ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(29, 158, 117, 0.5);
+  box-shadow: 0 10px 40px -10px rgba(29, 158, 117, 0.35);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(29, 158, 117, 0.55);
+}
+
+.tracking-mega {
+  letter-spacing: 0.4em;
+}
+
+/* Scroll reveal — toggled by the <Reveal> client component */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Soft radial glow placed behind the 3D buoy */
+.buoy-halo {
+  background: radial-gradient(
+    circle at center,
+    rgba(29, 158, 117, 0.22) 0%,
+    rgba(29, 158, 117, 0.06) 35%,
+    transparent 70%
+  );
+  animation: halo-pulse 6s ease-in-out infinite;
+}
+
+@keyframes halo-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* Faint perspective grid for atmosphere */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(29, 158, 117, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 158, 117, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+}
+
+/* Footer wave */
+@keyframes wave-move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-wave {
+  animation: wave-move 12s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .buoy-halo,
+  .animate-wave {
+    animation: none;
+  }
 }
