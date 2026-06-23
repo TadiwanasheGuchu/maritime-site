@@ -1,24 +1,49 @@
 import type { Metadata } from "next";
-import { Inter, Bebas_Neue } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+// Used only inside the CRM (.crm-theme); the marketing site stays on Montserrat.
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-bebas",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Monarch — Elite Lifeguard & Emergency Services",
-  description:
-    "Setting the gold standard for maritime safety, emergency medical response, and professional lifeguard certification across the Skeleton Coast and beyond.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.legalName} | Namibia`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [
+    "lifeguard Namibia",
+    "aquatic safety",
+    "rescue training",
+    "water safety",
+    "Walvis Bay",
+    "emergency response",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    title: `${siteConfig.legalName} | Namibia`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    locale: "en_NA",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.legalName,
+    description: siteConfig.description,
+  },
 };
 
 export default function RootLayout({
@@ -29,10 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
-      className={`${inter.variable} ${bebas.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-background font-sans text-on-primary">
+      <body className="min-h-full bg-background text-on-surface font-body-md selection:bg-primary selection:text-white">
         {children}
       </body>
     </html>

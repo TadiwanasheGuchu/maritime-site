@@ -1,156 +1,233 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------ *
- * Design tokens (Monarch Lifeguard — immersive landing)
- * Tailwind v4 reads these and generates utilities like
- * `bg-background`, `text-tertiary`, `font-display`, etc.
- * ------------------------------------------------------------------ */
+/*
+ * Monarch Lifeguard design tokens.
+ * Ported from stitch_monarch_aquatic_safety_platform/DESIGN.md into the
+ * Tailwind v4 @theme layer so the semantic class names (bg-primary,
+ * text-on-surface, px-gutter, rounded-lg, ...) work directly.
+ */
 @theme {
-  --color-background: #020e1f;
-  --color-surface: #02152e;
-  --color-surface-2: #03203f;
-  --color-primary: #042c53;
-  --color-primary-bright: #185fa5;
-  --color-secondary: #416089;
-  --color-tertiary: #1d9e75;
-  --color-tertiary-bright: #22c08e;
-  --color-on-primary: #e8eef6;
+  /* Surfaces & neutrals */
+  --color-surface: #fbf9f8;
+  --color-surface-dim: #dbdad9;
+  --color-surface-bright: #fbf9f8;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f3f3;
+  --color-surface-container: #efeded;
+  --color-surface-container-high: #e9e8e7;
+  --color-surface-container-highest: #e4e2e2;
+  --color-surface-variant: #e4e2e2;
+  --color-on-surface: #1b1c1c;
+  --color-on-surface-variant: #3e484f;
+  --color-inverse-surface: #303031;
+  --color-inverse-on-surface: #f2f0f0;
+  --color-outline: #6e7880;
+  --color-outline-variant: #bdc8d0;
+  --color-background: #fbf9f8;
+  --color-on-background: #1b1c1c;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-bebas), "Bebas Neue", ui-sans-serif, sans-serif;
-}
+  /* Primary (sky blue) */
+  --color-surface-tint: #00668a;
+  --color-primary: #00668a;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #29abe2;
+  --color-on-primary-container: #003b53;
+  --color-inverse-primary: #7bd0ff;
+  --color-primary-fixed: #c4e7ff;
+  --color-primary-fixed-dim: #7bd0ff;
+  --color-on-primary-fixed: #001e2c;
+  --color-on-primary-fixed-variant: #004c69;
 
-/* ------------------------------------------------------------------ *
- * Base
- * ------------------------------------------------------------------ */
-html {
-  scroll-behavior: smooth;
+  /* Secondary / tertiary */
+  --color-secondary: #5f5e5e;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e2dfde;
+  --color-on-secondary-container: #636262;
+  --color-secondary-fixed: #e5e2e1;
+  --color-secondary-fixed-dim: #c8c6c5;
+  --color-on-secondary-fixed: #1c1b1b;
+  --color-on-secondary-fixed-variant: #474746;
+  --color-tertiary: #595f64;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #9aa1a5;
+  --color-on-tertiary-container: #31383c;
+  --color-tertiary-fixed: #dde3e8;
+  --color-tertiary-fixed-dim: #c1c7cc;
+  --color-on-tertiary-fixed: #161c20;
+  --color-on-tertiary-fixed-variant: #41484c;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Spacing scale (8px base) */
+  --spacing-base: 8px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 64px;
+
+  /* Radius — brand leans on full/pill geometry */
+  --radius-sm: 0.5rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  /* Typography */
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-on-primary);
-  overflow-x: hidden;
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
-::selection {
-  background: rgba(29, 158, 117, 0.35);
-  color: #fff;
+/* Visible keyboard-focus indicator (accessibility) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+/*
+ * Type roles from the Monarch design system. Defined as plain classes (not
+ * Tailwind utilities) so the design's `font-display-lg`, `font-headline-lg`,
+ * etc. carry the full size/weight/leading/tracking, matching the source HTML.
+ */
+.font-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
-::-webkit-scrollbar-track {
-  background: #020e1f;
+.font-headline-lg {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
 }
-::-webkit-scrollbar-thumb {
-  background: rgba(29, 158, 117, 0.4);
-  border-radius: 9999px;
+.font-headline-lg-mobile {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(29, 158, 117, 0.7);
+.font-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
 }
-
-/* ------------------------------------------------------------------ *
- * Components / utilities
- * ------------------------------------------------------------------ */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition:
-    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease;
+.font-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
 }
-.glass-card:hover {
-  border-color: rgba(29, 158, 117, 0.5);
-  box-shadow: 0 10px 40px -10px rgba(29, 158, 117, 0.35);
+.font-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
 }
-
-.text-glow {
-  text-shadow: 0 0 30px rgba(29, 158, 117, 0.55);
+.font-label-lg {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
-
-.tracking-mega {
-  letter-spacing: 0.4em;
-}
-
-/* Scroll reveal — toggled by the <Reveal> client component */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.8s ease-out,
-    transform 0.8s ease-out;
-  will-change: opacity, transform;
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
+.font-label-md {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
 }
 
-/* Soft radial glow placed behind the 3D buoy */
-.buoy-halo {
-  background: radial-gradient(
-    circle at center,
-    rgba(29, 158, 117, 0.22) 0%,
-    rgba(29, 158, 117, 0.06) 35%,
-    transparent 70%
-  );
-  animation: halo-pulse 6s ease-in-out infinite;
+/* Scale the hero headline down on small screens */
+@media (max-width: 768px) {
+  .font-display-lg {
+    font-size: 34px;
+    line-height: 42px;
+  }
 }
 
-@keyframes halo-pulse {
-  0%,
+/* Emergency button pulse (from the source design) */
+@keyframes pulse-blue {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 102, 138, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(0, 102, 138, 0);
+  }
   100% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
+    box-shadow: 0 0 0 0 rgba(0, 102, 138, 0);
   }
 }
-
-/* Faint perspective grid for atmosphere */
-.hero-grid {
-  background-image:
-    linear-gradient(rgba(29, 158, 117, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29, 158, 117, 0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
-  mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
-}
-
-/* Footer wave */
-@keyframes wave-move {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.animate-wave {
-  animation: wave-move 12s linear infinite;
+.emergency-pulse {
+  animation: pulse-blue 2s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .buoy-halo,
-  .animate-wave {
+  .emergency-pulse {
     animation: none;
   }
+}
+
+/*
+ * CRM theme (Monarch CRM design system).
+ * The CRM reuses the same semantic token *names* as the marketing site but with
+ * different *values* (Inter, deep navy + ocean-teal, flat 8px). Scoping the
+ * overrides to `.crm-theme` lets the CRM components use the same utilities
+ * (bg-primary, text-tertiary, bg-on-secondary-fixed, …) and render in the CRM
+ * palette, while the marketing site outside this class is unaffected.
+ */
+.crm-theme {
+  --color-surface: #f8f9fb;
+  --color-surface-dim: #d9dadc;
+  --color-surface-bright: #f8f9fb;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f6;
+  --color-surface-container: #edeef0;
+  --color-surface-container-high: #e7e8ea;
+  --color-surface-container-highest: #e1e2e4;
+  --color-surface-variant: #e1e2e4;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #424751;
+  --color-inverse-surface: #2e3132;
+  --color-inverse-on-surface: #f0f1f3;
+  --color-outline: #727782;
+  --color-outline-variant: #c2c6d2;
+  --color-background: #f8f9fb;
+  --color-on-background: #191c1e;
+
+  --color-surface-tint: #1960a6;
+  --color-primary: #004782;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #185fa5;
+  --color-on-primary-container: #c1d9ff;
+  --color-inverse-primary: #a4c9ff;
+  --color-primary-fixed: #d4e3ff;
+  --color-primary-fixed-dim: #a4c9ff;
+  --color-on-primary-fixed: #001c39;
+  --color-on-primary-fixed-variant: #004883;
+
+  --color-secondary: #416089;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #afcefe;
+  --color-on-secondary-container: #385781;
+  --color-secondary-fixed: #d4e3ff;
+  --color-secondary-fixed-dim: #aac8f8;
+  --color-on-secondary-fixed: #001c3a;
+  --color-on-secondary-fixed-variant: #284870;
+
+  --color-tertiary: #005039;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #006b4d;
+  --color-on-tertiary-container: #7aecbe;
+  --color-tertiary-fixed: #86f8c9;
+  --color-tertiary-fixed-dim: #68dbae;
+  --color-on-tertiary-fixed: #002115;
+  --color-on-tertiary-fixed-variant: #00513a;
+
+  /* Flat, tool-like radii */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
